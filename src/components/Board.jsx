@@ -8,9 +8,12 @@ function Board(props){
         verticalAlign: 'top'
     }
     function makePlayRow(rowArray, rowIndex){
+        if(rowIndex === 0){
+            rowArray.reverse();
+        }
         return(
             <div key={rowIndex}>
-                {rowArray.map((content, index) =><Pocket count={content} id={`${rowIndex}-${index}`} key={`${rowIndex}-${index}`} onPocketClick={props.onPocketClick}/>)}
+                {rowArray.map((content, index) =><Pocket count={content} id={`${rowIndex}-${rowIndex === 0 ? rowArray.length -1 - index : index}`} key={`${rowIndex}-${index}`} onPocketClick={props.onPocketClick}/>)}
             </div>
         )
     }
