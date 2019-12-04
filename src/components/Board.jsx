@@ -9,15 +9,15 @@ function Board(props){
     }
     function makePlayRow(rowArray, rowIndex){
         return(
-            <div>
-                {rowArray.map((content, index) =><Pocket count={content} key={`${rowIndex}-${index}`}/>)}
+            <div key={rowIndex}>
+                {rowArray.map((content, index) =><Pocket count={content} id={`${rowIndex}-${index}`} key={`${rowIndex}-${index}`} onPocketClick={props.onPocketClick}/>)}
             </div>
         )
     }
     return (
         <div style={inlineStyle}>
             <div id='player1-score' style={inlineStyle}>
-                <Pocket count={props.player1Score}/>
+                <Pocket count={props.player1Score} />
             </div>
             <div id='play-area' style={inlineStyle}>
                 {props.gameBoard.map((playerSideArray, index) => {

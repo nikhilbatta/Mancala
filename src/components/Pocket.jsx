@@ -9,7 +9,7 @@ function Pocket(props){
         height: 'inherit'
     }
     return (
-        <div style={inlineStyle}>
+        <div style={inlineStyle} onClick={() => props.onPocketClick(props.id)}>
             {props.count}
         </div>
     )
