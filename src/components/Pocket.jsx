@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pocket(){
+function Pocket(props){
     var inlineStyle = {
         display: 'inline-block',
         border: '1px solid black',
@@ -10,7 +10,7 @@ function Pocket(){
     }
     return (
         <div style={inlineStyle}>
-            0
+            {props.count}
         </div>
     )
 }
