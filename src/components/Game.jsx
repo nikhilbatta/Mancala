@@ -2,20 +2,23 @@ import React, {useState} from 'react'
 import Board from './Board'
 import Scoreboard from './Scoreboard';
 function Game(){
-    const [player1Score, setScoreP1] = useState(0)
-    const [player2Score, setScoreP2] = useState(0)
-    const [board, setBoard] = useState([[4,4,4,4],[4,4,4,4]])
+    let [player1Score, setScoreP1] = useState(0)
+    let [player2Score, setScoreP2] = useState(0)
+    let [board, setBoard] = useState([[4,4,4,4],[4,4,4,4]])
     
     function handlePocketClick(id){
+        console.log(id);
         let row = Number(id.substring(0,1));
         const activePlayer = row;
         let index = Number(id.substring(id.indexOf('-')+1));
-        console.log(board);
         const pocketValue = board[row][index];
-        const removedForScore = Math.floor(index/4);
+        const removedForScore = Math.floor(pocketValue/4);
         const addToBothScores = Math.floor(removedForScore/2);
         const addToActivePlayer = removedForScore % 2;
         const forPlayArea = pocketValue - removedForScore;
+        console.log(index);
+        console.log(addToActivePlayer);
+        console.log(removedForScore);
         board[row][index] = 0;
         for(let i = 0; i < forPlayArea; i++){
             index += 1;
@@ -33,6 +36,8 @@ function Game(){
             setScoreP2(player2Score + addToBothScores);
         }
         setBoard(board);
+        console.log(board.slice());
+
     }
     return (
         <div>
