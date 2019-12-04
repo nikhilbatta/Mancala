@@ -6,7 +6,8 @@ function Pocket(props){
         border: '1px solid black',
         minHeight: '150px',
         width: '150px',
-        height: 'inherit'
+        height: 'inherit',
+        textAlign: 'center'
     }
     return (
         <div style={inlineStyle} onClick={() => props.onPocketClick(props.id)}>

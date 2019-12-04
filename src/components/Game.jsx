@@ -7,26 +7,28 @@ function Game(){
     let [board, setBoard] = useState([[4,4,4,4],[4,4,4,4]])
     
     function handlePocketClick(id){
+        let tempBoard = [...board];
         console.log(id);
         let row = Number(id.substring(0,1));
         const activePlayer = row;
+        console.log(activePlayer);
         let index = Number(id.substring(id.indexOf('-')+1));
-        const pocketValue = board[row][index];
-        const removedForScore = Math.floor(pocketValue/4);
+        const pocketValue = tempBoard[row][index];
+        const removedForScore = Math.floor((index+pocketValue+1)/5);
         const addToBothScores = Math.floor(removedForScore/2);
         const addToActivePlayer = removedForScore % 2;
+        console.log("to active only", addToActivePlayer);
+        console.log("to both", addToBothScores);
+        console.log("total removed", removedForScore);
         const forPlayArea = pocketValue - removedForScore;
-        console.log(index);
-        console.log(addToActivePlayer);
-        console.log(removedForScore);
-        board[row][index] = 0;
+        tempBoard[row][index] = 0;
         for(let i = 0; i < forPlayArea; i++){
             index += 1;
             if(index % 4 === 0){
                 index = 0;
                 row = (row +1) % 2;
             }
-            board[row][index] = board[row][index] + 1;
+            tempBoard[row][index] = tempBoard[row][index] + 1;
         }
         if(activePlayer === 0){
             setScoreP1(player1Score + addToBothScores);
@@ -35,9 +37,10 @@ function Game(){
             setScoreP1(player1Score + addToBothScores + addToActivePlayer);
             setScoreP2(player2Score + addToBothScores);
         }
-        setBoard(board);
+        setBoard(tempBoard);
         console.log(board.slice());
-
+        console.log("p1", player1Score);
+        console.log("p2", player2Score);
     }
     return (
         <div>
